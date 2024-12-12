@@ -1,4 +1,13 @@
-package PACKAGE_NAME;
-
 public class Fruit {
+    public int x, y;
+
+    public Fruit(int startX, int startY) {
+        this.x = startX;
+        this.y = startY;
+    }
+
+    public void respawn(int width, int height) {
+
+    }
+
 }
