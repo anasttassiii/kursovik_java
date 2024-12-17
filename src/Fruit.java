@@ -19,6 +19,6 @@ public class Fruit {
 
     public void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(x * 16, y * 16, 16, 16); // Assuming each cell is 16x16 pixels
+        g.fillRect(x * 16, y * 16, 16, 16); // размер ячейки 16х16
     }
 }

@@ -14,7 +14,8 @@ public class Game extends JPanel implements ActionListener {
     private Timer timer;
     private boolean isGameOver;
     private int score;
-
+    private int totalGamesPlayed; // Общее количество сыгранных игр
+    private int totalScore; // Максимальный балл по всем играм
 
     public Game() {
         snake = new Snake(4);
@@ -22,7 +23,8 @@ public class Game extends JPanel implements ActionListener {
         fruit.respawn(N, M - 3);
         isGameOver = false;
         score = 0;
-
+        totalGamesPlayed = 1;
+        totalScore = 0;
 
         timer = new Timer(100, this);
         timer.start();
@@ -63,7 +65,17 @@ public class Game extends JPanel implements ActionListener {
         g.setFont(new Font("Arial", Font.PLAIN, 30));
         g.drawString("Score: " + score, N * size / 2 - 50, M * size / 2 + 10);
 
+        // Отображение общего количества сыгранных игр и общего счета
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("Total Games Played: " + totalGamesPlayed, N * size / 2 - 150, M * size / 2 + 70);
+        if (score > totalScore) {
+            totalScore = score;
+        }
+        g.drawString("Total Score: " + totalScore, N * size / 2 - 150, M * size / 2 + 90);
 
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("Press 'G' to Restart or 'Esc' to Quit", N * size / 2 - 150, M * size / 2 + 150);
     }
 
     @Override
@@ -90,9 +102,9 @@ public class Game extends JPanel implements ActionListener {
     }
 
     private void restartGame() {
+        totalGamesPlayed++; // Увеличение общего количества сыгранных игр
 
-
-        score = 0; // Reset score for new game
+        score = 0; // Сброс счета для новой игры
         isGameOver = false;
         snake = new Snake(4);
         fruit.respawn(N - 3, M - 3);
