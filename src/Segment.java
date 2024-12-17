@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Segment {
     private int x, y;
@@ -23,5 +25,10 @@ public class Segment {
 
     public int getY() {
         return y;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.MAGENTA);
+        g.fillRect(x * 16, y * 16, 16, 16);
     }
 }
