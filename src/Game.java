@@ -6,9 +6,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Game extends JPanel implements ActionListener {
-    private final int N = 70; // Количество ячеек по горизонтали
-    private final int M = 40; /// Количество ячеек по вертикали
-    private final int size = 16; // Размер одной ячейки
+    private static final int N = 70; // Количество ячеек по горизонтали
+    private static final int M = 40; // Количество ячеек по вертикали
+    private static final int size = 16; // Размер одной ячейки
     private Snake snake;
     private Fruit fruit;
     private Timer timer;
@@ -18,6 +18,7 @@ public class Game extends JPanel implements ActionListener {
     private int totalScore; // Максимальный балл по всем играм
 
     public Game() {
+        // Initialize game components
         snake = new Snake(4);
         fruit = new Fruit(10, 10);
         fruit.respawn(N, M - 3);
@@ -45,9 +46,23 @@ public class Game extends JPanel implements ActionListener {
         });
     }
 
+    public static void startGame() {
+        JFrame frame = new JFrame("Snake Game");
+        Game game = new Game();
+        frame.add(game);
+        frame.setSize(1136, 640);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        // Отрисовка фона
+        g.setColor(Color.WHITE); // Цвет фона
+        g.fillRect(0, 0, getWidth(), getHeight()); // Заполнение фона
+
         if (isGameOver) {
             drawGameOver(g);
         } else {
@@ -112,10 +127,10 @@ public class Game extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Snake Game");
-        Game game = new Game();
-        frame.add(game);
-        frame.setSize(1136, 640);
+        JFrame frame = new JFrame("Welcome to Snake Game!");
+        WelcomeScreen welcomeScreen = new WelcomeScreen();
+        frame.add(welcomeScreen);
+        frame.setSize(1000, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

@@ -28,7 +28,9 @@ public class Segment {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.MAGENTA);
+        g.setColor(Color.green);
         g.fillRect(x * 16, y * 16, 16, 16);
     }
+
+
 }
