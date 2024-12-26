@@ -27,7 +27,7 @@ public class Snake {
     }
 
     public void grow() {
-        body.add(new Segment(body.size(), body.size()));
+        body.add(new Segment(-1, -1));
     }
 
     public void setDirection(int dir) {
